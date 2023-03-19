@@ -35,7 +35,10 @@ class ProjectController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $project = Project::with('category', 'technologies')->find($id);
+        if(!$project) return response(null, 404);
+
+        return response()->json($project);
     }
 
     /**
